@@ -3,9 +3,7 @@ package com.huida.service1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,5 +29,10 @@ public class TestController {
     @GetMapping("/service/{param}")
     public String findUser(@PathVariable("param")String param) {
         return "huida-service======" + param;
+    }
+
+    @PostMapping("/p_service/{param}")
+    public String p_service(@PathVariable("param")String param, @RequestBody String body) {
+        return "Post Request ======" + param + "======" + body;
     }
 }

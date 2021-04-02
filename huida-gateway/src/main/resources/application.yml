@@ -1,0 +1,31 @@
+
+spring:
+  application:
+    name: huida-dateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      enabled: true
+      routes:
+      - id: user-8092 #唯一标识
+        uri: lb://huida-user #转发地址  服务名
+        predicates:
+        - Path=/user/** #判断匹配条件,即地址带有/user/**的请求,会转发至lb:huida-user
+        filters:
+        - StripPrefix=1
+        - AddRequestHeader=NAME, yinjihuan #添加请求头
+        - AddResponseHeader=X-Response-Red, Blue #添加响应头
+
+server:
+  port: 8092
+
+dubbo:
+  application:
+    id: dubbo-starter-gateway
+    name: dubbo-starter-gateway
+  registry:
+    address: spring-cloud://localhost
+
+
