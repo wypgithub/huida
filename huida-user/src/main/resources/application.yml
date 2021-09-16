@@ -1,12 +1,22 @@
+server:
+  port: 8091
+  tomcat:
+    max-threads: 300
+    accept-count: 100
+    max-connections: 10000
+
 spring:
   application:
     name: huida-user
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
-server:
-  port: 8091
+        server-addr: 127.0.0.1:8848 #Nacos地址
+  datasource:
+    url: jdbc:mysql://localhost:3306/huida?characterEncoding=utf8&serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
 
 dubbo:
@@ -20,3 +30,16 @@ dubbo:
   cloud:
     subscribed-services: huida-service
 
+
+
+mybatis:
+  mapper-locations: classpath*:mapper/*Mapper.xml
+
+
+jwt:
+  secret: secret
+  expiration: 7200000
+  token: Authorization
+feign:
+  hystrix:
+    enabled: true

@@ -1,5 +1,6 @@
 package com.huida.service;
 
+import com.huida.service.impl.FeignRequestImpl;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  */
 //@RequestMapping("/user/test")
 @Component
-@FeignClient(value = "huida-service")
+@FeignClient(value = "huida-service", fallback = FeignRequestImpl.class)
 public interface FeignRequest {
     @GetMapping(value = "/service/{param}")
     String getRequest(@PathVariable("param") String param);
