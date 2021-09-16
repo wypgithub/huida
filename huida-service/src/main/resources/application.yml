@@ -4,17 +4,16 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
-        ip: 192.168.16.73
+        server-addr: 127.0.0.1:8848 #Nacos地址
 server:
   port: 8090
 dubbo:
   protocol:
     name: dubbo
     port: 44444
-    host: 192.168.16.73
+    host: 192.168.16.153
   registry:
-    #address: nacos://localhost:8848
-    address: spring-cloud://localhost
+    address: nacos://localhost:8848
+    #address: spring-cloud://localhost
   scan:
     base-packages: com.huida.*
